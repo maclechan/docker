@@ -1,0 +1,19 @@
+version: "3.6"
+services:
+  redis:
+     image: 118.24.109.254:5000/redis-cluster9
+     ports:
+       - "6397:6397"
+       - "16397:16397"
+     stdin_open: true
+     deploy:
+        mode: replicated
+        replicas: 6
+     networks:
+        - cluster
+     tty: true
+     privileged: true
+     command:
+       - redis.sh
+networks:
+     cluster:
